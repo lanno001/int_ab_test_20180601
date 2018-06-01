@@ -1,0 +1,44 @@
+Assembly	flye	minimap2_miniasm	smartdenovo
+# contigs (>= 0 bp)	1	1	1
+# contigs (>= 1000 bp)	1	1	1
+# contigs (>= 5000 bp)	1	1	1
+# contigs (>= 10000 bp)	1	1	1
+# contigs (>= 25000 bp)	1	1	1
+# contigs (>= 50000 bp)	1	0	0
+Total length (>= 0 bp)	52920	41819	43959
+Total length (>= 1000 bp)	52920	41819	43959
+Total length (>= 5000 bp)	52920	41819	43959
+Total length (>= 10000 bp)	52920	41819	43959
+Total length (>= 25000 bp)	52920	41819	43959
+Total length (>= 50000 bp)	52920	0	0
+# contigs	1	1	1
+Largest contig	52920	41819	43959
+Total length	52920	41819	43959
+Reference length	12470	12470	12470
+Reference GC (%)	55.97	55.97	55.97
+N50	52920	41819	43959
+NG50	52920	41819	43959
+N75	52920	41819	43959
+NG75	52920	41819	43959
+L50	1	1	1
+LG50	1	1	1
+L75	1	1	1
+LG75	1	1	1
+# misassemblies	0	-	-
+# misassembled contigs	0	-	-
+Misassembled contigs length	0	-	-
+# local misassemblies	0	-	-
+# unaligned mis. contigs	0	-	-
+# unaligned contigs	0 + 1 part	1 + 0 part	1 + 0 part
+Unaligned length	40556	41819	43959
+Genome fraction (%)	99.936	-	-
+Duplication ratio	0.992	-	-
+# N's per 100 kbp	0.00	0.00	0.00
+# mismatches per 100 kbp	409.24	-	-
+# indels per 100 kbp	1420.32	-	-
+Largest alignment	12364	-	-
+Total aligned length	12364	-	-
+NGA50	12364	-	-
+NGA75	12364	-	-
+LGA50	1	-	-
+LGA75	1	-	-

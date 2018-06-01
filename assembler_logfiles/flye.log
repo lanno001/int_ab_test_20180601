@@ -1,0 +1,54 @@
+START AUTO VERSION PRINTING
+# flye
+2.3.4-g5b44fbe
+END AUTO VERSION PRINTING
+] INFO: Assembling reads
+[2018-06-01 16:15:13] INFO: Running with k-mer size: 15
+[2018-06-01 16:15:13] INFO: Reading sequences
+[2018-06-01 16:15:13] INFO: Reads N50/90: 15814 / 9968
+[2018-06-01 16:15:13] INFO: Selected minimum overlap 5000
+[2018-06-01 16:15:13] INFO: Expected read coverage: 37
+[2018-06-01 16:15:13] INFO: Generating solid k-mer index
+[2018-06-01 16:15:29] INFO: Counting kmers (1/2):
+0% 10% % 20% % 30% 40% 50% 60% 70% 80% % 90% 100% 
+[2018-06-01 16:15:29] INFO: Counting kmers (2/2):
+0% % 10% % 30% % 50% % % % 60% % % % 80% 90% 100% 
+[2018-06-01 16:15:29] INFO: Filling index table
+0% 10% 20% 30% 40% % 50% % 60% 70% 80% 90% 100% 
+[2018-06-01 16:15:30] INFO: Extending reads
+[2018-06-01 16:15:30] INFO: Overlap-based coverage: 11
+0% % 10% 4020% % % 70% % 70% % % 70% % 70% % % % % % % 100% 
+[2018-06-01 16:15:30] INFO: Assembled 1 draft contigs
+[2018-06-01 16:15:30] INFO: Generating contig sequences
+10% 20% 40% 50% 70% 80% 100% 
+[2018-06-01 16:15:31] INFO: Running Minimap2
+[2018-06-01 16:15:31] INFO: Computing consensus
+[2018-06-01 16:15:31] INFO: Alignment error rate: 0.204390030109
+[2018-06-01 16:15:31] INFO: Performing repeat analysis
+[2018-06-01 16:15:31] INFO: Reading sequences
+[2018-06-01 16:15:31] INFO: Building repeat graph
+50% 100% 
+[2018-06-01 16:15:48] INFO: Aligning reads to the graph
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2018-06-01 16:16:04] INFO: Aligned sequence: 888566 / 924102 (0.961545)
+[2018-06-01 16:16:04] INFO: Mean edge coverage: 8
+[2018-06-01 16:16:04] INFO: Resolving repeats
+[2018-06-01 16:16:04] INFO: Generating contigs
+[2018-06-01 16:16:04] INFO: Generated 1 contigs
+[2018-06-01 16:16:04] INFO: Polishing genome (1/1)
+[2018-06-01 16:16:04] INFO: Running Minimap2
+[2018-06-01 16:16:05] INFO: Separating alignment into bubbles
+[2018-06-01 16:16:05] INFO: Alignment error rate: 0.16363932261
+[2018-06-01 16:16:05] INFO: Correcting bubbles
+0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[2018-06-01 16:16:10] INFO: Assembly statistics:
+
+	Total length:	52920
+	Contigs:	1
+	Scaffolds:	1
+	Scaffolds N50:	52920
+	Largest scf:	52920
+	Mean coverage:	8
+
+[2018-06-01 16:16:10] INFO: Final assembly: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/flye/scaffolds.fasta
+CPU_TIME(USER+SYS):80+2

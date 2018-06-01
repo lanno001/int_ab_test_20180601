@@ -11,6 +11,10 @@ mkdir -p /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/flye
 
 # Run assembler and copy assembly fasta to separate folder
 
+echo "START AUTO VERSION PRINTING"
+grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
+echo "END AUTO VERSION PRINTING"
+
 # ASSEMBLER COMMAND SCRIPT
 # Template for assembler command as accepted by assembler benchmark
 #
@@ -48,7 +52,5 @@ $FLYE --nano-raw ${INT}/all_reads.fastq --genome-size ${REFGENOME_SIZE} --out-di
 
 cp ${INT}/assembler_results/flye/scaffolds.fasta ${INT}/assembler_results/all_assemblies/flye.fasta 
 
-echo "START AUTO VERSION PRINTING"
-grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
 
-$FLYE --version 2>&1 && echo "END AUTO VERSION PRINTING"
+$FLYE --version 2>&1 && 

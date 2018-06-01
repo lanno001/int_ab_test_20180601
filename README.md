@@ -29,11 +29,11 @@ cp ${INT}/assembler_results/minimap2_miniasm_nanopolish/nanopolish/minimap2_mini
 <tr><th style="text-align: center;">                           </th><th style="text-align: center;"> CPU time </th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align: center;">           canu            </td><td style="text-align: center;"> 0:00:34  </td></tr>
+<tr><td style="text-align: center;">        smartdenovo        </td><td style="text-align: center;"> 0:00:00  </td></tr>
+<tr><td style="text-align: center;">           flye            </td><td style="text-align: center;"> 0:01:38  </td></tr>
+<tr><td style="text-align: center;">           canu            </td><td style="text-align: center;"> 0:00:33  </td></tr>
 <tr><td style="text-align: center;">minimap2_miniasm_nanopolish</td><td style="text-align: center;"> 0:00:00  </td></tr>
-<tr><td style="text-align: center;">           flye            </td><td style="text-align: center;"> 0:01:22  </td></tr>
 <tr><td style="text-align: center;">     minimap2_miniasm      </td><td style="text-align: center;"> 0:00:00  </td></tr>
-<tr><td style="text-align: center;">        smartdenovo        </td><td style="text-align: center;"> 0:00:01  </td></tr>
 </tbody>
 </table><h3>Readset quality</h3>
 <table>
@@ -41,19 +41,18 @@ cp ${INT}/assembler_results/minimap2_miniasm_nanopolish/nanopolish/minimap2_mini
 <tr><th style="text-align: center;">                          </th><th style="text-align: center;"> Value </th><th style="text-align: center;">                 </th><th style="text-align: center;"> N  </th><th style="text-align: center;">  %  </th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align: center;"> <b>Mean read quality</b> </td><td style="text-align: center;">  9.1  </td><td style="text-align: center;"><b>insertions</b></td><td style="text-align: center;">1200</td><td style="text-align: center;">9.22 </td></tr>
-<tr><td style="text-align: center;"><b>Median read quality</b></td><td style="text-align: center;">  9.4  </td><td style="text-align: center;"> <b>matches</b>  </td><td style="text-align: center;">8336</td><td style="text-align: center;">64.08</td></tr>
-<tr><td style="text-align: center;"> <b>Mean read length</b>  </td><td style="text-align: center;">15401.7</td><td style="text-align: center;"><b>deletions</b> </td><td style="text-align: center;">927 </td><td style="text-align: center;">7.13 </td></tr>
-<tr><td style="text-align: center;"><b>Median read length</b> </td><td style="text-align: center;"> 14488 </td><td style="text-align: center;"><b>mismatches</b></td><td style="text-align: center;">2546</td><td style="text-align: center;">19.57</td></tr>
+<tr><td style="text-align: center;"><b>Median read length</b> </td><td style="text-align: center;"> 14488 </td><td style="text-align: center;"> <b>matches</b>  </td><td style="text-align: center;">8336</td><td style="text-align: center;">64.08</td></tr>
+<tr><td style="text-align: center;"><b>Median read quality</b></td><td style="text-align: center;">  9.4  </td><td style="text-align: center;"><b>insertions</b></td><td style="text-align: center;">1200</td><td style="text-align: center;">9.22 </td></tr>
+<tr><td style="text-align: center;"> <b>Mean read length</b>  </td><td style="text-align: center;">15401.7</td><td style="text-align: center;"><b>mismatches</b></td><td style="text-align: center;">2546</td><td style="text-align: center;">19.57</td></tr>
+<tr><td style="text-align: center;"> <b>Mean read quality</b> </td><td style="text-align: center;">  9.1  </td><td style="text-align: center;"><b>deletions</b> </td><td style="text-align: center;">927 </td><td style="text-align: center;">7.13 </td></tr>
 </tbody>
 </table><h3>QUAST</h3><h4>Assembly Statistics</h4><table>
 <thead>
-<tr><th style="text-align: center;">                </th><th style="text-align: center;"> Genome Fraction </th><th style="text-align: center;"> Largest contig (Kbp) </th><th style="text-align: center;"> N75 (Kbp) </th><th style="text-align: center;"> L75 (K) </th><th style="text-align: center;"> N50 (Kbp) </th><th style="text-align: center;"> Indels /100Kbp </th><th style="text-align: center;"> Mismatches /100Kbp </th><th style="text-align: center;"> Misas- semblies </th><th style="text-align: center;"> L50 (K) </th><th style="text-align: center;"> Length (Mbp) </th></tr>
+<tr><th style="text-align: center;">                </th><th style="text-align: center;"> N50 (Kbp) </th><th style="text-align: center;"> Genome Fraction </th><th style="text-align: center;"> L50 (K) </th><th style="text-align: center;"> Misas- semblies </th><th style="text-align: center;"> L75 (K) </th><th style="text-align: center;"> Length (Mbp) </th><th style="text-align: center;"> N75 (Kbp) </th><th style="text-align: center;"> Indels /100Kbp </th><th style="text-align: center;"> Mismatches /100Kbp </th><th style="text-align: center;"> Largest contig (Kbp) </th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align: center;">      flye      </td><td style="text-align: center;">     99.936      </td><td style="text-align: center;">        52920         </td><td style="text-align: center;">   52920   </td><td style="text-align: center;">    1    </td><td style="text-align: center;">   52920   </td><td style="text-align: center;">    1420.32     </td><td style="text-align: center;">       409.24       </td><td style="text-align: center;">       0.0       </td><td style="text-align: center;">    1    </td><td style="text-align: center;">    52920     </td></tr>
-<tr><td style="text-align: center;">minimap2_miniasm</td><td style="text-align: center;">        -        </td><td style="text-align: center;">        41819         </td><td style="text-align: center;">   41819   </td><td style="text-align: center;">    1    </td><td style="text-align: center;">   41819   </td><td style="text-align: center;">       -        </td><td style="text-align: center;">         -          </td><td style="text-align: center;">        -        </td><td style="text-align: center;">    1    </td><td style="text-align: center;">    41819     </td></tr>
-<tr><td style="text-align: center;">  smartdenovo   </td><td style="text-align: center;">        -        </td><td style="text-align: center;">        43959         </td><td style="text-align: center;">   43959   </td><td style="text-align: center;">    1    </td><td style="text-align: center;">   43959   </td><td style="text-align: center;">       -        </td><td style="text-align: center;">         -          </td><td style="text-align: center;">        -        </td><td style="text-align: center;">    1    </td><td style="text-align: center;">    43959     </td></tr>
+<tr><td style="text-align: center;">      flye      </td><td style="text-align: center;">   52898   </td><td style="text-align: center;">      99.96      </td><td style="text-align: center;">    1    </td><td style="text-align: center;">       0.0       </td><td style="text-align: center;">    1    </td><td style="text-align: center;">    52898     </td><td style="text-align: center;">   52898   </td><td style="text-align: center;">    1363.82     </td><td style="text-align: center;">       369.03       </td><td style="text-align: center;">        52898         </td></tr>
+<tr><td style="text-align: center;">minimap2_miniasm</td><td style="text-align: center;">   41819   </td><td style="text-align: center;">        -        </td><td style="text-align: center;">    1    </td><td style="text-align: center;">        -        </td><td style="text-align: center;">    1    </td><td style="text-align: center;">    41819     </td><td style="text-align: center;">   41819   </td><td style="text-align: center;">       -        </td><td style="text-align: center;">         -          </td><td style="text-align: center;">        41819         </td></tr>
 </tbody>
 </table><h4>Number of Contigs</h4>
 

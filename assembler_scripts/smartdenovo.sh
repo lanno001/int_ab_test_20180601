@@ -11,6 +11,10 @@ mkdir -p /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartd
 
 # Run assembler and copy assembly fasta to separate folder
 
+echo "START AUTO VERSION PRINTING"
+grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
+echo "END AUTO VERSION PRINTING"
+
 # ASSEMBLER COMMAND SCRIPT
 #
 # TOOL DESCRIPTION-----------------------------------------------------------------------------------------
@@ -33,7 +37,5 @@ elif [ -e ${INT}/assembler_results/smartdenovo/smartdenovo_assembly.dmo.lay.utg 
 	cp ${INT}/assembler_results/smartdenovo/smartdenovo_assembly.dmo.lay.utg ${INT}/assembler_results/all_assemblies/smartdenovo.fasta
 fi
 
-echo "START AUTO VERSION PRINTING"
-grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
 
-echo "END AUTO VERSION PRINTING"
+

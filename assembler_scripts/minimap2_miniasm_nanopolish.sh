@@ -11,6 +11,10 @@ mkdir -p /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/minima
 
 # Run assembler and copy assembly fasta to separate folder
 
+echo "START AUTO VERSION PRINTING"
+grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
+echo "END AUTO VERSION PRINTING"
+
 # ASSEMBLER COMMAND SCRIPT
 #
 #
@@ -40,7 +44,5 @@ ${TOOL_DIR}/scripts/other/nanopolish_std.sh ${INT}/assembler_results/minimap2_mi
 
 cp ${INT}/assembler_results/minimap2_miniasm_nanopolish/nanopolish/minimap2_miniasm_nanopolish.fasta ${INT}/assembler_results/all_assemblies/minimap2_miniasm_nanopolish.fasta
 
-echo "START AUTO VERSION PRINTING"
-grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
 
-${MINIMAP2} -V 2>&1 && ${MINIASM} -V 2>&1 && ${NANOPOLISH} --version | grep -Po '(?<=nanopolish version ).+' 2>&1 && echo "END AUTO VERSION PRINTING"
+${MINIMAP2} -V 2>&1 && ${MINIASM} -V 2>&1 && ${NANOPOLISH} --version | grep -Po '(?<=nanopolish version ).+' 2>&1 && 

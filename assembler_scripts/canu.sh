@@ -11,6 +11,10 @@ mkdir -p /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/canu
 
 # Run assembler and copy assembly fasta to separate folder
 
+echo "START AUTO VERSION PRINTING"
+grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
+echo "END AUTO VERSION PRINTING"
+
 # ASSEMBLER COMMAND SCRIPT
 # 
 # TOOL DESCRIPTION-----------------------------------------------------------------------------------------
@@ -29,7 +33,5 @@ ${CANU} -d ${INT}/assembler_results/canu -p canu_assembly maxThreads=${NB_THREAD
 
 cp ${INT}/assembler_results/canu/canu_assembly.contigs.fasta ${INT}/assembler_results/all_assemblies/canu.fasta
 
-echo "START AUTO VERSION PRINTING"
-grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
 
-$CANU --version | grep -Po '(?<=Canu ).+' 2>&1 && echo "END AUTO VERSION PRINTING"
+$CANU --version | grep -Po '(?<=Canu ).+' 2>&1 && 

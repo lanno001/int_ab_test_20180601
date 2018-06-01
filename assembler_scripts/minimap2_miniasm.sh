@@ -11,6 +11,10 @@ mkdir -p /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/minima
 
 # Run assembler and copy assembly fasta to separate folder
 
+echo "START AUTO VERSION PRINTING"
+grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
+echo "END AUTO VERSION PRINTING"
+
 # ASSEMBLER COMMAND SCRIPT
 # TOOL DESCRIPTION-----------------------------------------------------------------------------------------
 #
@@ -29,7 +33,5 @@ awk '/^S/{print ">"$2"\n"$3}' ${INT}/assembler_results/minimap2_miniasm/minimap2
 
 cp ${INT}/assembler_results/minimap2_miniasm/minimap2_miniasm.fasta ${INT}/assembler_results/all_assemblies/minimap2_miniasm.fasta
 
-echo "START AUTO VERSION PRINTING"
-grep -Pzo '(?s)(?<=VERSIONS\-{97}\n).+(?=# COMMANDS)' ${BASH_SOURCE[0]} | grep -aPo '#.+(?=: <)'
 
-${MINIMAP2} -V 2>&1 && ${MINIASM} -V 2>&1 && echo "END AUTO VERSION PRINTING"
+${MINIMAP2} -V 2>&1 && ${MINIASM} -V 2>&1 && 

@@ -1,12 +1,12 @@
 canu:
-  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:00:34
+  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:00:33
 flye:
-  QUAST_mqc-generalstats-Genome_fraction: 99.936
-  QUAST_mqc-generalstats-N50: 52920.0
-  QUAST_mqc-generalstats-Total_length: 52920.0
-  QUAST_mqc-generalstats-indels_per_100_kbp: 1420.32
-  QUAST_mqc-generalstats-mismatches_per_100_kbp: 409.24
-  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:01:22
+  QUAST_mqc-generalstats-Genome_fraction: 99.96
+  QUAST_mqc-generalstats-N50: 52898.0
+  QUAST_mqc-generalstats-Total_length: 52898.0
+  QUAST_mqc-generalstats-indels_per_100_kbp: 1363.82
+  QUAST_mqc-generalstats-mismatches_per_100_kbp: 369.03
+  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:01:38
 minimap2_miniasm:
   QUAST_mqc-generalstats-Genome_fraction: '-'
   QUAST_mqc-generalstats-N50: 41819.0
@@ -17,9 +17,4 @@ minimap2_miniasm:
 minimap2_miniasm_nanopolish:
   assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:00:00
 smartdenovo:
-  QUAST_mqc-generalstats-Genome_fraction: '-'
-  QUAST_mqc-generalstats-N50: 43959.0
-  QUAST_mqc-generalstats-Total_length: 43959.0
-  QUAST_mqc-generalstats-indels_per_100_kbp: '-'
-  QUAST_mqc-generalstats-mismatches_per_100_kbp: '-'
-  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:00:01
+  assembler benchmark CPU times_mqc-generalstats-CPU_time: 0:00:00

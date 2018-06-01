@@ -1,0 +1,49 @@
+START AUTO VERSION PRINTING
+# minimap2
+# miniasm
+2.10-r764-dirty
+0.2-r168-dirty
+END AUTO VERSION PRINTING
+.056*1.93] loaded/built the index for 30 target sequence(s)
+[M::mm_mapopt_update::0.059*1.90] mid_occ = 35
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 30
+[M::mm_idx_stat::0.062*1.82] distinct minimizers: 125456 (88.98% are singletons); average occurrences: 1.257; average spacing: 2.930
+[M::worker_pipeline::0.089*2.42] mapped 30 sequences
+[M::main] Version: 2.10-r764-dirty
+[M::main] CMD: /home/lanno001/poreTally/lib/minimap2/minimap2 -x ava-ont -t 16 /mnt/nexenta/lanno001/nobackup/int_ab_20180601/all_reads.fastq /mnt/nexenta/lanno001/nobackup/int_ab_20180601/all_reads.fastq
+[M::main] Real time: 0.097 sec; CPU: 0.220 sec
+[M::main] ===> Step 1: reading read mappings <===
+[M::ma_hit_read::0.001*0.00] read 286 hits; stored 503 hits and 30 sequences (462051 bp)
+[M::main] ===> Step 2: 1-pass (crude) read selection <===
+[M::ma_hit_sub::0.002*0.00] 30 query sequences remain after sub
+[M::ma_hit_cut::0.002*0.00] 503 hits remain after cut
+[M::ma_hit_flt::0.002*0.00] 500 hits remain after filtering; crude coverage after filtering: 9.72
+[M::main] ===> Step 3: 2-pass (fine) read selection <===
+[M::ma_hit_sub::0.003*0.00] 30 query sequences remain after sub
+[M::ma_hit_cut::0.003*0.00] 500 hits remain after cut
+[M::ma_hit_contained::0.004*0.00] 6 sequences and 26 hits remain after containment removal
+[M::main] ===> Step 4: graph cleaning <===
+[M::ma_sg_gen] read 26 arcs
+[M::main] ===> Step 4.1: transitive reduction <===
+[M::asg_arc_del_trans] transitively reduced 16 arcs
+[M::asg_arc_del_multi] removed 0 multi-arcs
+[M::asg_arc_del_asymm] removed 0 asymmetric arcs
+[M::main] ===> Step 4.2: initial tip cutting and bubble popping <===
+[M::asg_cut_tip] cut 0 tips
+[M::asg_pop_bubble] popped 0 bubbles and trimmed 0 tips
+[M::main] ===> Step 4.3: cutting short overlaps (3 rounds in total) <===
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::main] ===> Step 4.4: removing short internal sequences and bi-loops <===
+[M::asg_cut_internal] cut 0 internal sequences
+[M::asg_cut_biloop] cut 0 small bi-loops
+[M::asg_cut_tip] cut 0 tips
+[M::asg_pop_bubble] popped 0 bubbles and trimmed 0 tips
+[M::main] ===> Step 4.5: aggressively cutting short overlaps <===
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::main] ===> Step 5: generating unitigs <===
+[M::main] Version: 0.2-r168-dirty
+[M::main] CMD: /home/lanno001/poreTally/lib/miniasm/miniasm -f /mnt/nexenta/lanno001/nobackup/int_ab_20180601/all_reads.fastq /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/minimap2_miniasm/minimap2.paf.gz
+[M::main] Real time: 0.016 sec; CPU: 0.000 sec
+CPU_TIME(USER+SYS):0+0

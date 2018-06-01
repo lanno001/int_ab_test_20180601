@@ -1,0 +1,68 @@
+/home/lanno001/poreTally/lib/quast/quast.py --threads 16 -o /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast -R /mnt/nexenta/lanno001/nobackup/refgenomes/tomm40_GRCh38.fasta --min-identity 90.0 --no-html --no-icarus --no-gc --no-sv --silent /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/flye.fasta /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/minimap2_miniasm.fasta /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/smartdenovo.fasta --eukaryote
+
+
+System information:
+  OS: Linux-4.4.0-116-generic-x86_64-with-Ubuntu-16.04-xenial (linux_64)
+  Python version: 3.5.2
+  CPUs number: 56
+
+Started: 2018-06-01 16:16:50
+
+Logging to /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast/quast.log
+NOTICE: Output directory already exists. Existing Nucmer alignments can be used
+
+CWD: /mnt/nexenta/lanno001/nobackup
+Main parameters: 
+  Threads: 16, eukaryotic: true, minimum contig length: 500, ambiguity: one, threshold for extensive misassembly size: 1000
+
+Reference:
+  /mnt/nexenta/lanno001/nobackup/refgenomes/tomm40_GRCh38.fasta ==> tomm40_GRCh38
+
+Contigs:
+  Pre-processing...
+  1  /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/flye.fasta ==> flye
+  2  /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/minimap2_miniasm.fasta ==> minimap2_miniasm
+  3  /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/all_assemblies/smartdenovo.fasta ==> smartdenovo
+
+2018-06-01 16:16:50
+Running Basic statistics processor...
+Done.
+
+2018-06-01 16:16:51
+Running Contig analyzer...
+NOTICE: 3   MUMmer plot cannot be created.
+
+NOTICE: 2   MUMmer plot cannot be created.
+
+Done for 1 out of 3. For the rest, only basic stats are going to be evaluated.
+
+2018-06-01 16:16:51
+Running NA-NGA calculation...
+Done.
+
+2018-06-01 16:16:52
+Running Genome analyzer...
+  NOTICE: No file with genes provided. Use the -G option if you want to specify it.
+  NOTICE: No file with operons provided. Use the -O option if you want to specify it.
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding option to enable it.
+
+2018-06-01 16:16:52
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating PDF with all tables and plots...
+Done
+
+2018-06-01 16:16:53
+RESULTS:
+  Text versions of total report are saved to /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  PDF version (tables and plots) is saved to /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast/report.pdf
+  Log saved to /mnt/nexenta/lanno001/nobackup/int_ab_20180601/analyses/quast/quast.log
+
+Finished: 2018-06-01 16:16:53
+Elapsed time: 0:00:03.591189
+NOTICEs: 4; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

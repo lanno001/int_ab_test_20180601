@@ -1,0 +1,11 @@
+Jellyfish:
+  all_sections:
+    flye.count: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/kmer_abundance/count_files/flye.count
+    minimap2_miniasm.count: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/kmer_abundance/count_files/minimap2_miniasm.count
+    smartdenovo.count: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/kmer_abundance/count_files/smartdenovo.count
+    tomm40_GRCh38.count: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/kmer_abundance/count_files/tomm40_GRCh38.count
+QUAST:
+  all_sections:
+    flye: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/quast/report.tsv
+    minimap2_miniasm: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/quast/report.tsv
+    smartdenovo: /mnt/nexenta/lanno001/nobackup/int_ab_20180601/summarized_results/quast/report.tsv

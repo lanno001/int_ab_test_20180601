@@ -1,0 +1,545 @@
+-- Canu snapshot v1.7 +0 changes (r8692 c9ef9219a265e0bbe3a311cca7d28aa02b7517d3)
+--
+-- CITATIONS
+--
+-- Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+-- Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+-- Genome Res. 2017 May;27(5):722-736.
+-- http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction, consensus and GFA building use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+-- Overlaps are generated using:
+--   Berlin K, et al.
+--   Assembling large genomes with single-molecule sequencing and locality-sensitive hashing.
+--   Nat Biotechnol. 2015 Jun;33(6):623-30.
+--   http://doi.org/10.1038/nbt.3238
+-- 
+--   Myers EW, et al.
+--   A Whole-Genome Assembly of Drosophila.
+--   Science. 2000 Mar 24;287(5461):2196-204.
+--   http://doi.org/10.1126/science.287.5461.2196
+-- 
+--   Li H.
+--   Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences.
+--   Bioinformatics. 2016 Jul 15;32(14):2103-10.
+--   http://doi.org/10.1093/bioinformatics/btw152
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected Java(TM) Runtime Environment '1.8.0_171' (from '/usr/lib/jvm/java-8-oracle/bin/java').
+-- Detected gnuplot version '5.0 patchlevel 3' (from 'gnuplot') and image format 'png'.
+-- Detected 56 CPUs and 252 gigabytes of memory.
+-- Limited to 16 CPUs from maxThreads option.
+-- Detected Slurm with 'sinfo' binary in /usr/bin/sinfo.
+-- Grid engine disabled per useGrid=false option.
+--
+--                            (tag)Concurrency
+--                     (tag)Threads          |
+--            (tag)Memory         |          |
+--        (tag)         |         |          |     total usage     algorithm
+--        -------  ------  --------   --------  -----------------  -----------------------------
+-- Local: meryl      8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (k-mer counting)
+-- Local: cormhap    6 GB   16 CPUs x   1 job      6 GB   16 CPUs  (overlap detection with mhap)
+-- Local: obtovl     4 GB    8 CPUs x   2 jobs     8 GB   16 CPUs  (overlap detection)
+-- Local: utgovl     4 GB    8 CPUs x   2 jobs     8 GB   16 CPUs  (overlap detection)
+-- Local: ovb        4 GB    1 CPU  x  16 jobs    64 GB   16 CPUs  (overlap store bucketizer)
+-- Local: ovs        8 GB    1 CPU  x  16 jobs   128 GB   16 CPUs  (overlap store sorting)
+-- Local: red        4 GB    4 CPUs x   4 jobs    16 GB   16 CPUs  (read error detection)
+-- Local: oea        4 GB    1 CPU  x  16 jobs    64 GB   16 CPUs  (overlap error adjustment)
+-- Local: bat       16 GB    4 CPUs x   1 job     16 GB    4 CPUs  (contig construction)
+-- Local: gfa        8 GB    4 CPUs x   1 job      8 GB    4 CPUs  (GFA alignment and processing)
+--
+-- Found Nanopore uncorrected reads in the input files.
+--
+-- Generating assembly 'canu_assembly' in '/mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/canu'
+--
+-- Parameters:
+--
+--  genomeSize        12470
+--
+--  Overlap Generation Limits:
+--    corOvlErrorRate 0.3200 ( 32.00%)
+--    obtOvlErrorRate 0.1440 ( 14.40%)
+--    utgOvlErrorRate 0.1440 ( 14.40%)
+--
+--  Overlap Processing Limits:
+--    corErrorRate    0.5000 ( 50.00%)
+--    obtErrorRate    0.1440 ( 14.40%)
+--    utgErrorRate    0.1440 ( 14.40%)
+--    cnsErrorRate    0.1920 ( 19.20%)
+--
+--
+-- BEGIN CORRECTION
+--
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:13 2018 with 16327.679 GB free disk space
+
+    cd .
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/gatekeeperCreate \
+      -minlength 1000 \
+      -o ./canu_assembly.gkpStore.BUILDING \
+      ./canu_assembly.gkpStore.gkp \
+    > ./canu_assembly.gkpStore.BUILDING.err 2>&1
+
+-- Finished on Fri Jun  1 16:15:13 2018 (lickety-split) with 16327.679 GB free disk space
+----------------------------------------
+--
+-- In gatekeeper store './canu_assembly.gkpStore':
+--   Found 30 reads.
+--   Found 462051 bases (37.05 times coverage).
+--
+--   Read length histogram (one '*' equals 0.05 reads):
+--        0    999      0 
+--     1000   1999      0 
+--     2000   2999      0 
+--     3000   3999      0 
+--     4000   4999      0 
+--     5000   5999      0 
+--     6000   6999      0 
+--     7000   7999      1 *****************
+--     8000   8999      4 **********************************************************************
+--     9000   9999      1 *****************
+--    10000  10999      1 *****************
+--    11000  11999      1 *****************
+--    12000  12999      3 ****************************************************
+--    13000  13999      3 ****************************************************
+--    14000  14999      4 **********************************************************************
+--    15000  15999      2 ***********************************
+--    16000  16999      1 *****************
+--    17000  17999      1 *****************
+--    18000  18999      1 *****************
+--    19000  19999      0 
+--    20000  20999      1 *****************
+--    21000  21999      1 *****************
+--    22000  22999      1 *****************
+--    23000  23999      2 ***********************************
+--    24000  24999      1 *****************
+--    25000  25999      0 
+--    26000  26999      0 
+--    27000  27999      0 
+--    28000  28999      0 
+--    29000  29999      0 
+--    30000  30999      0 
+--    31000  31999      0 
+--    32000  32999      0 
+--    33000  33999      1 *****************
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Jun  1 16:15:13 2018 with 16327.679 GB free disk space (1 processes; 1 concurrently)
+
+    cd correction/0-mercounts
+    ./meryl.sh 1 > ./meryl.000001.out 2>&1
+
+-- Finished on Fri Jun  1 16:15:14 2018 (1 second) with 16327.679 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.
+--
+--  16-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1    334353 *******************************************************************--> 0.8959 0.7243
+--       2-     2     20491 ********************************************************************** 0.9509 0.8131
+--       3-     4     12169 *****************************************                              0.9723 0.8650
+--       5-     7      4816 ****************                                                       0.9905 0.9297
+--       8-    11       982 ***                                                                    0.9977 0.9685
+--      12-    16       156                                                                        0.9991 0.9801
+--      17-    22        70                                                                        0.9995 0.9839
+--      23-    29        63                                                                        0.9996 0.9865
+--      30-    37        24                                                                        0.9998 0.9899
+--      38-    46        20                                                                        0.9998 0.9915
+--      47-    56        18                                                                        0.9999 0.9934
+--      57-    67         7                                                                        0.9999 0.9954
+--      68-    79         2                                                                        1.0000 0.9963
+--      80-    92         1                                                                        1.0000 0.9966
+--      93-   106         5                                                                        1.0000 0.9968
+--     107-   121         5                                                                        1.0000 0.9979
+--     122-   137         1                                                                        1.0000 0.9992
+--     138-   154         0                                                                        0.0000 0.0000
+--     155-   172         0                                                                        0.0000 0.0000
+--     173-   191         0                                                                        0.0000 0.0000
+--     192-   211         0                                                                        0.0000 0.0000
+--     212-   232         0                                                                        0.0000 0.0000
+--     233-   254         0                                                                        0.0000 0.0000
+--     255-   277         0                                                                        0.0000 0.0000
+--     278-   301         0                                                                        0.0000 0.0000
+--     302-   326         0                                                                        0.0000 0.0000
+--     327-   352         0                                                                        0.0000 0.0000
+--     353-   379         1                                                                        1.0000 1.0000
+--     380-   407         0                                                                        0.0000 0.0000
+--     408-   436         0                                                                        0.0000 0.0000
+--     437-   466         0                                                                        0.0000 0.0000
+--     467-   497         0                                                                        0.0000 0.0000
+--     498-   529         0                                                                        0.0000 0.0000
+--     530-   562         0                                                                        0.0000 0.0000
+--     563-   596         0                                                                        0.0000 0.0000
+--     597-   631         0                                                                        0.0000 0.0000
+--     632-   667         0                                                                        0.0000 0.0000
+--     668-   704         0                                                                        0.0000 0.0000
+--     705-   742         0                                                                        0.0000 0.0000
+--     743-   781         0                                                                        0.0000 0.0000
+--     782-   821         0                                                                        0.0000 0.0000
+--
+--         371 (max occurrences)
+--      127248 (total mers, non-unique)
+--       38831 (distinct mers, non-unique)
+--      334353 (unique mers)
+-- For mhap overlapping, the threshold 0.000005000000000 is too low, resetting to 0.000200389513888 to capture 5.000000 * 37 coverage.
+-- For mhap overlapping, set repeat k-mer threshold to 185.
+--
+-- Found 461601 16-mers; 373184 distinct and 334353 unique.  Largest count 371.
+--
+-- OVERLAPPER (mhap) (correction)
+--
+-- Set corMhapSensitivity=normal based on read coverage of 37.
+--
+-- PARAMETERS: hashes=512, minMatches=3, threshold=0.83
+--
+-- Given 6 GB, can fit 18000 reads per block.
+-- For 2 blocks, set stride to 2 blocks.
+-- Logging partitioning to 'correction/1-overlapper/partitioning.log'.
+-- Configured 1 mhap precompute jobs.
+-- Configured 1 mhap overlap jobs.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'cormhap' concurrent execution on Fri Jun  1 16:15:14 2018 with 16327.679 GB free disk space (1 processes; 1 concurrently)
+
+    cd correction/1-overlapper
+    ./precompute.sh 1 > ./precompute.000001.out 2>&1
+
+-- Finished on Fri Jun  1 16:15:16 2018 (2 seconds) with 16327.677 GB free disk space
+----------------------------------------
+-- All 1 mhap precompute jobs finished successfully.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'cormhap' concurrent execution on Fri Jun  1 16:15:16 2018 with 16327.677 GB free disk space (1 processes; 1 concurrently)
+
+    cd correction/1-overlapper
+    ./mhap.sh 1 > ./mhap.000001.out 2>&1
+
+-- Finished on Fri Jun  1 16:15:16 2018 (lickety-split) with 16327.677 GB free disk space
+----------------------------------------
+-- Found 1 mhap overlap output files.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:16 2018 with 16327.677 GB free disk space
+
+    cd correction
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/ovStoreBuild \
+     -O ./canu_assembly.ovlStore.BUILDING \
+     -G ./canu_assembly.gkpStore \
+     -M 2-8 \
+     -L ./1-overlapper/ovljob.files \
+     > ./canu_assembly.ovlStore.err 2>&1
+
+-- Finished on Fri Jun  1 16:15:16 2018 (lickety-split) with 16327.677 GB free disk space
+----------------------------------------
+-- Checking store.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:16 2018 with 16327.677 GB free disk space
+
+    cd correction
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/ovStoreDump \
+     -G ./canu_assembly.gkpStore \
+     -O ./canu_assembly.ovlStore \
+     -d -counts \
+     > ./canu_assembly.ovlStore/counts.dat 2> ./canu_assembly.ovlStore/counts.err
+
+-- Finished on Fri Jun  1 16:15:16 2018 (lickety-split) with 16327.677 GB free disk space
+----------------------------------------
+--
+-- Overlap store 'correction/canu_assembly.ovlStore' successfully constructed.
+-- Found 348 overlaps for 30 reads; 0 reads have no overlaps.
+--
+--
+-- Purged 0 GB in 3 overlap output files.
+-- Set corMinCoverage=4 based on read coverage of 37.
+-- Global filter scores will be estimated.
+-- Computing correction layouts.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:17 2018 with 16327.677 GB free disk space
+
+    cd correction
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/generateCorrectionLayouts \
+      -G ./canu_assembly.gkpStore \
+      -O ./canu_assembly.ovlStore \
+      -C ./canu_assembly.corStore.WORKING \
+      -ec 4 \
+      -eC 80 \
+    > ./canu_assembly.corStore.err 2>&1
+    
+
+-- Finished on Fri Jun  1 16:15:17 2018 (lickety-split) with 16327.677 GB free disk space
+----------------------------------------
+-- Computing correction layouts.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:17 2018 with 16327.677 GB free disk space
+
+    cd correction/2-correction
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/filterCorrectionLayouts \
+      -G  ../canu_assembly.gkpStore \
+      -C  ../canu_assembly.corStore \
+      -R  ./canu_assembly.readsToCorrect.WORKING \
+      -cc 4 \
+      -cl 1000 \
+      -g  12470 \
+      -c  40 \
+    > ./canu_assembly.readsToCorrect.err 2>&1
+    
+
+-- Finished on Fri Jun  1 16:15:17 2018 (lickety-split) with 16327.677 GB free disk space
+----------------------------------------
+--                             original      original
+--                            raw reads     raw reads
+--   category                w/overlaps  w/o/overlaps
+--   -------------------- ------------- -------------
+--   Number of Reads                 30             0
+--   Number of Bases             462051             0
+--   Coverage                    37.053         0.000
+--   Median                       14581             0
+--   Mean                         15401             0
+--   N50                          16553             0
+--   Minimum                       7674             0
+--   Maximum                      33866             0
+--   
+--                                        --------corrected---------  ----------rescued----------
+--                             evidence                     expected                     expected
+--   category                     reads            raw     corrected            raw     corrected
+--   -------------------- -------------  ------------- -------------  ------------- -------------
+--   Number of Reads                 30             28            28              0             0
+--   Number of Bases             462051         408141        342899              0             0
+--   Coverage                    37.053         32.730        27.498          0.000         0.000
+--   Median                       14581          14395         12369              0             0
+--   Mean                         15401          14576         12246              0             0
+--   N50                          16553          15055         14446              0             0
+--   Minimum                       7674           7674          1415              0             0
+--   Maximum                      33866          24375         22909              0             0
+--   
+--                        --------uncorrected--------
+--                                           expected
+--   category                       raw     corrected
+--   -------------------- ------------- -------------
+--   Number of Reads                  2             2
+--   Number of Bases              53910             0
+--   Coverage                     4.323         0.000
+--   Median                       33866             0
+--   Mean                         26955             0
+--   N50                     2149968760             0
+--   Minimum                      20044             0
+--   Maximum                      33866             0
+--   
+--   Maximum Memory           828671786
+--
+--                            (tag)Concurrency
+--                     (tag)Threads          |
+--            (tag)Memory         |          |
+--        (tag)         |         |          |     total usage     algorithm
+--        -------  ------  --------   --------  -----------------  -----------------------------
+-- Local: cor        3 GB    4 CPUs x   4 jobs    12 GB   16 CPUs  (read correction)
+--
+-- Using overlaps no worse than 0.5 fraction error for correcting reads (from corErrorRate parameter).
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'cor' concurrent execution on Fri Jun  1 16:15:17 2018 with 16327.677 GB free disk space (1 processes; 4 concurrently)
+
+    cd correction/2-correction
+    ./correctReads.sh 1 > ./correctReads.000001.out 2>&1
+
+-- Finished on Fri Jun  1 16:15:22 2018 (5 seconds) with 16327.678 GB free disk space
+----------------------------------------
+-- Found 1 read correction output files.
+-- Found 1 read correction output files.
+--
+-- Loading corrected reads into corStore and gkpStore.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:22 2018 with 16327.678 GB free disk space
+
+    cd correction
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/loadCorrectedReads \
+      -G ./canu_assembly.gkpStore \
+      -C ./canu_assembly.corStore \
+      -L ./2-correction/corjob.files \
+    > ./2-correction/corjob.files.load.err 2>&1
+    
+
+-- Finished on Fri Jun  1 16:15:22 2018 (lickety-split) with 16327.678 GB free disk space
+----------------------------------------
+--
+-- In gatekeeper store './canu_assembly.gkpStore':
+--   Found 27 reads.
+--   Found 324157 bases (25.99 times coverage).
+--
+--   Read length histogram (one '*' equals 0.05 reads):
+--        0    999      0 
+--     1000   1999      1 *****************
+--     2000   2999      0 
+--     3000   3999      1 *****************
+--     4000   4999      1 *****************
+--     5000   5999      0 
+--     6000   6999      0 
+--     7000   7999      3 ****************************************************
+--     8000   8999      2 ***********************************
+--     9000   9999      2 ***********************************
+--    10000  10999      0 
+--    11000  11999      3 ****************************************************
+--    12000  12999      2 ***********************************
+--    13000  13999      3 ****************************************************
+--    14000  14999      4 **********************************************************************
+--    15000  15999      1 *****************
+--    16000  16999      1 *****************
+--    17000  17999      0 
+--    18000  18999      0 
+--    19000  19999      1 *****************
+--    20000  20999      0 
+--    21000  21999      1 *****************
+--    22000  22999      1 *****************
+--
+-- Purging correctReads output after loading into stores.
+-- Purged 1 .cns outputs.
+-- Purged 2 .out job log outputs.
+--
+-- Purging overlaps used for correction.
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:22 2018 with 16327.678 GB free disk space
+
+    cd .
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/gatekeeperDumpFASTQ \
+      -corrected \
+      -G ./canu_assembly.gkpStore \
+      -o ./canu_assembly.correctedReads.gz \
+      -fasta \
+      -nolibname \
+    > canu_assembly.correctedReads.fasta.err 2>&1
+
+-- Finished on Fri Jun  1 16:15:22 2018 (lickety-split) with 16327.678 GB free disk space
+----------------------------------------
+--
+-- Corrected reads saved in 'canu_assembly.correctedReads.fasta.gz'.
+--
+--
+-- BEGIN TRIMMING
+--
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Jun  1 16:15:22 2018 with 16327.678 GB free disk space (1 processes; 1 concurrently)
+
+    cd trimming/0-mercounts
+    ./meryl.sh 1 > ./meryl.000001.out 2>&1
+
+-- Finished on Fri Jun  1 16:15:22 2018 (lickety-split) with 16327.678 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.
+--
+--  22-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1     95305 *******************************************************************--> 0.6812 0.2945
+--       2-     2     15072 ********************************************************************** 0.7889 0.3877
+--       3-     4     11271 ****************************************************                   0.8379 0.4512
+--       5-     7      8422 ***************************************                                0.8919 0.5542
+--       8-    11      6432 *****************************                                          0.9405 0.6974
+--      12-    16      3153 **************                                                         0.9850 0.8982
+--      17-    22       120                                                                        0.9983 0.9776
+--      23-    29        40                                                                        0.9991 0.9848
+--      30-    37        34                                                                        0.9994 0.9875
+--      38-    46        29                                                                        0.9997 0.9917
+--      47-    56        16                                                                        0.9998 0.9949
+--      57-    67         4                                                                        0.9999 0.9970
+--      68-    79         0                                                                        0.0000 0.0000
+--      80-    92         0                                                                        0.0000 0.0000
+--      93-   106         1                                                                        1.0000 0.9979
+--     107-   121         0                                                                        0.0000 0.0000
+--     122-   137         4                                                                        1.0000 0.9983
+--     138-   154         1                                                                        1.0000 1.0000
+--     155-   172         0                                                                        0.0000 0.0000
+--     173-   191         0                                                                        0.0000 0.0000
+--     192-   211         0                                                                        0.0000 0.0000
+--     212-   232         0                                                                        0.0000 0.0000
+--     233-   254         0                                                                        0.0000 0.0000
+--     255-   277         0                                                                        0.0000 0.0000
+--     278-   301         0                                                                        0.0000 0.0000
+--     302-   326         0                                                                        0.0000 0.0000
+--     327-   352         0                                                                        0.0000 0.0000
+--     353-   379         0                                                                        0.0000 0.0000
+--     380-   407         0                                                                        0.0000 0.0000
+--     408-   436         0                                                                        0.0000 0.0000
+--     437-   466         0                                                                        0.0000 0.0000
+--     467-   497         0                                                                        0.0000 0.0000
+--     498-   529         0                                                                        0.0000 0.0000
+--     530-   562         0                                                                        0.0000 0.0000
+--     563-   596         0                                                                        0.0000 0.0000
+--     597-   631         0                                                                        0.0000 0.0000
+--     632-   667         0                                                                        0.0000 0.0000
+--     668-   704         0                                                                        0.0000 0.0000
+--     705-   742         0                                                                        0.0000 0.0000
+--     743-   781         0                                                                        0.0000 0.0000
+--     782-   821         0                                                                        0.0000 0.0000
+--
+--         148 (max occurrences)
+--      228285 (total mers, non-unique)
+--       44599 (distinct mers, non-unique)
+--       95305 (unique mers)
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:23 2018 with 16327.678 GB free disk space
+
+    cd trimming/0-mercounts
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/meryl \
+      -Dt \
+      -n 149 \
+      -s ./canu_assembly.ms22 \
+    > ./canu_assembly.ms22.frequentMers.fasta \
+    2> ./canu_assembly.ms22.frequentMers.fasta.err
+
+-- Finished on Fri Jun  1 16:15:23 2018 (lickety-split) with 16327.678 GB free disk space
+----------------------------------------
+-- Reset obtOvlMerThreshold from auto to 149.
+--
+-- Found 323590 22-mers; 139904 distinct and 95305 unique.  Largest count 148.
+--
+-- OVERLAPPER (normal) (trimming) erate=0.144
+--
+----------------------------------------
+-- Starting command on Fri Jun  1 16:15:23 2018 with 16327.678 GB free disk space
+
+    cd trimming/1-overlapper
+    /home/lanno001/poreTally/lib/canu/Linux-amd64/bin/overlapInCorePartition \
+     -G  ../canu_assembly.gkpStore \
+     -hl 85312000 \
+     -rl 1000000000 \
+     -ol 500 \
+     -o  ./canu_assembly.partition \
+    > ./canu_assembly.partition.err 2>&1
+
+-- Finished on Fri Jun  1 16:15:23 2018 (lickety-split) with 16327.678 GB free disk space
+----------------------------------------
+
+ERROR:
+ERROR:  Failed with exit code 136.  (rc=34816)
+ERROR:
+
+ABORT:
+ABORT: Canu snapshot v1.7 +0 changes (r8692 c9ef9219a265e0bbe3a311cca7d28aa02b7517d3)
+ABORT: Don't panic, but a mostly harmless error occurred and Canu stopped.
+ABORT: Try restarting.  If that doesn't work, ask for help.
+ABORT:
+ABORT:   failed partition for overlapper.
+ABORT:
+CPU_TIME(USER+SYS):34+0

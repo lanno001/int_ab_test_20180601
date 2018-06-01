@@ -1,0 +1,78 @@
+/home/lanno001/poreTally/lib/smartdenovo/wtpre -J 5000 /mnt/nexenta/lanno001/nobackup/int_ab_20180601/all_reads.fasta | gzip -c -1 > /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.fa.gz
+/home/lanno001/poreTally/lib/smartdenovo/wtzmo -t 8 -i /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.fa.gz -fo /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.ovl -k 16 -z 10 -Z 16 -U -1 -m 0.1 -A 1000
+[Fri Jun  1 16:14:43 2018] loading long reads
+[Fri Jun  1 16:14:43 2018] Done, 30 reads (length >= 0)
+[Fri Jun  1 16:14:43 2018] sorted sequences by length dsc
+[Fri Jun  1 16:14:43 2018] calculating overlaps, 8 threads
+[Fri Jun  1 16:14:43 2018] indexing 1/1
+[Fri Jun  1 16:14:43 2018] - scanning kmers (16 bp)
+030 reads
+[Fri Jun  1 16:14:43 2018] - high frequency kmer depth is set to 100
+[Fri Jun  1 16:14:43 2018] - average kmer depth = 1
+[Fri Jun  1 16:14:43 2018] - 1 high frequency kmers (>=100)
+[Fri Jun  1 16:14:43 2018] - indexing 9028 kmers
+030 reads
+[Fri Jun  1 16:14:43 2018] Done
+[Fri Jun  1 16:14:43 2018] querying 1/1
+000000000000	0progress: 30 364 100.00%, 1.58 CPU seconds
+[Fri Jun  1 16:14:43 2018] Done
+/home/lanno001/poreTally/lib/smartdenovo/wtclp -i /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.ovl -fo /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.obt -d 3 -k 300 -m 0.1 -FT
+[Fri Jun  1 16:14:43 2018] loading alignments
+[Fri Jun  1 16:14:43 2018] 0[Fri Jun  1 16:14:43 2018] 349
+[Fri Jun  1 16:14:43 2018] Done, 30 reads, 349 overlaps
+[Fri Jun  1 16:14:43 2018] clipping based on overlap depth
+Before: legal overlaps = 283
+After:  legal overlaps = 224
+[Fri Jun  1 16:14:43 2018] Done
+0 reads were filtered by connection-checking
+0 reads were truncated by chimera-checking
+legal overlaps = 224
+[Fri Jun  1 16:14:43 2018] Done
+--------------------------------
+== Message for debug ==
+Sequence coverage statistic:
+         154         989         909        2012        1448       13772         744        1767        2024        5421
+        2032        8457        8641        6571       11966        5866        7434        6105        3776         308
+          53           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+           0           0           0           0           0           0           0           0           0           0
+
+Total aviable sequences: 348096 bp
+Average Coverage(?):     6
+Genome Size(?):          58016 bp
+--------------------------------
+[Fri Jun  1 16:14:43 2018] output
+[Fri Jun  1 16:14:43 2018] Done
+/home/lanno001/poreTally/lib/smartdenovo/wtlay -i /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.fa.gz -b /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.obt -j /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.ovl -fo /mnt/nexenta/lanno001/nobackup/int_ab_20180601/assembler_results/smartdenovo/smartdenovo_assembly.dmo.lay -w 300 -s 200 -m 0.1 -r 0.95 -c 1
+[Fri Jun  1 16:14:43 2018] loading reads
+[Fri Jun  1 16:14:43 2018] Done, 30 reads
+[Fri Jun  1 16:14:43 2018] loading reads obt information
+[Fri Jun  1 16:14:43 2018] Done
+[Fri Jun  1 16:14:43 2018] loading alignments
+loaded 260 overlaps
+building edges
+0 overlaps228 fine overlaps
+[Fri Jun  1 16:14:43 2018] Done
+[Fri Jun  1 16:14:43 2018] calculating edge coverage ...
+[Fri Jun  1 16:14:43 2018] removed 44 duplicate edges
+[Fri Jun  1 16:14:43 2018] Done
+[Fri Jun  1 16:14:43 2018] masked 16 contained reads
+[Fri Jun  1 16:14:43 2018] masked 0 low coverage (<1) edges
+[Fri Jun  1 16:14:43 2018] 'best_overlap' cut 175 non-best edges
+2 tips, 2 bubbles, 0 chimera, 2 non-bog, 0 recoveries
+[Fri Jun  1 16:14:43 2018] repair 6 bog elements
+0 tips, 0 bubbles, 0 chimera, 0 non-bog, 0 recoveries
+[Fri Jun  1 16:14:43 2018] generated 2 unitigs
+[Fri Jun  1 16:14:43 2018] recovered 0 edges inter unitigs
+0 tips, 0 bubbles, 0 chimera, 0 non-bog, 0 recoveries
+[Fri Jun  1 16:14:43 2018] generated 2 unitigs
+[Fri Jun  1 16:14:43 2018] recover 0 edges inter unitigs
+[Fri Jun  1 16:14:43 2018] output 1 independent unitigs
+[Fri Jun  1 16:14:43 2018] Done
+START AUTO VERSION PRINTING
+CPU_TIME(USER+SYS):1+0
